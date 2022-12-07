@@ -26,9 +26,9 @@ describe('Verify checkout and register feature', () => {
           UserData.FIRST_NAME, UserData.LAST_NAME, UserData.COMPANY, UserData.ADDRESS_1,
           UserData.ADDRESS_2, UserData.STATE, UserData.CITY, UserData.ZIPCODE, UserData.MOBILE)
 
+        await HomePage.userName.waitForDisplayed()
         await expect(HomePage.userName).toHaveText(UserData.SIGNUP_NAME)
         await HomePage.getCart()
-        const l = await Cart.cartItems.length
         await Cart.checkoutBtn.click()
         await basicFunctions.docLoaded()
         await CheckoutPage.verify(numberOfItems, [UserData.COMPANY, UserData.CITY, UserData.STATE], UserData.MOBILE)

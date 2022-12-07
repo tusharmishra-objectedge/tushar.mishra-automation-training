@@ -28,6 +28,7 @@ class RegisterPage extends Page {
     async signup (password, day, month, year, first_name, last_name, company, 
         address1, address2, state, city, zipcode, mobile_number) {
             await basicFunctions.docLoaded()
+            await this.signupTxt.waitForDisplayed()
             await expect(this.signupTxt).toHaveText('ENTER ACCOUNT INFORMATION')
             await this.gender.click()
             await this.password.setValue(password)
@@ -47,10 +48,8 @@ class RegisterPage extends Page {
             await this.mobile_number.setValue(mobile_number)
             await this.signupBtn.click()
             await basicFunctions.docLoaded()
-            await this.successMsg.isDisplayed()
+            await this.successMsg.waitForDisplayed()
             await this.continueBtn.click()
-            await basicFunctions.docLoaded()
-            await browser.refresh()
             await basicFunctions.docLoaded()
     }
 }

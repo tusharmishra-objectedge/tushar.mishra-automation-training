@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "div.recommended_items a[data-product-id=\"3\"]"
+}

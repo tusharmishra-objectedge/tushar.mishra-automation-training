@@ -1,6 +1,7 @@
 // home.page.js
 import Page from './page'
 import * as basicFunctions from '../common/basicFunctions'
+import { SUPPORTED_BROWSER_RUNNER_PRESETS } from '@wdio/cli/build/constants'
 
 class CheckoutPage extends Page {
     get placeOrderBtn () { return $('a[href="/payment"]') }
@@ -16,17 +17,21 @@ class CheckoutPage extends Page {
 
     async verify (n, address, mobileNo) {
         await basicFunctions.docLoaded()
-        await this.checkoutItems[0].waitForDisplayed()
-        if (this.checkoutItems.length != n){
+        const l = await basicFunctions.waitForMultipleElements(this.checkoutItems)
+        if (l != n){
             throw 'checkout item mismatch'
           }
+        await this.deliveryMob.waitForDisplayed()
+        await browser.pause(2000)
+//        console.log('addressssssss', this.deliveryAddress, this.billingAddress, address)
         for (let i = 0; i < 3; i++) {
-            if(this.deliveryAddress[i].getText() != address[i]
-            || this.billingAddress[i].getText() != address[i]){
+          console.log('addresssss', this.deliveryAddress[i].getText(), this.billingAddress[i].getText())
+            if(await this.deliveryAddress[i].getText() != address[i]
+            || await this.billingAddress[i].getText() != address[i]){
                 throw 'checkout address mismatch!'
             }
           }
-        if (this.deliveryMob != mobileNo || this.billingMob != mobileNo){
+        if (await this.deliveryMob != mobileNo || await this.billingMob != mobileNo){
             throw 'checkout mobile no. mismatch'
           }
         console.log('checkout verified')

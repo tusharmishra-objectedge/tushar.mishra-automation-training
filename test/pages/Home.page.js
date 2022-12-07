@@ -29,31 +29,37 @@ class HomePage extends Page {
     }
     async getProducts () {
         await basicFunctions.docLoaded()
+        await this.products.waitForClickable()
         await this.products.click()
         await basicFunctions.docLoaded()
     }
     async getCart () {
         await basicFunctions.docLoaded()
+        await this.cart.waitForClickable()
         await this.cart.click()
         await basicFunctions.docLoaded()
     }
     async getLogin () {
         await basicFunctions.docLoaded()
+        await this.login.waitForClickable()
         await this.login.click()
         await basicFunctions.docLoaded()
     }
     async getContact () {
         await basicFunctions.docLoaded()
+        await this.contact.waitForClickable()
         await this.contact.click()
         await basicFunctions.docLoaded()
     }
     async getTestCases () {
         await basicFunctions.docLoaded()
+        await this.testCases.waitForClickable()
         await this.testCases.click()
         await basicFunctions.docLoaded()
     }
     async deleteAccount () {
         await basicFunctions.docLoaded()
+        await this.delete.waitForClickable()
         await this.delete.click()
         await basicFunctions.docLoaded()
         await expect(this.deleteMsg).toHaveText('ACCOUNT DELETED!')
@@ -62,6 +68,7 @@ class HomePage extends Page {
     }
     async logout () {
         await basicFunctions.docLoaded()
+        await this.logoutUser.waitForClickable()
         await this.logoutUser.click()
         await basicFunctions.docLoaded()
         await expect(browser).toHaveUrl('https://automationexercise.com/login')

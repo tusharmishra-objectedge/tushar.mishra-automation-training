@@ -13,20 +13,22 @@ describe('Verify if cart is working fine after login', () => {
 
         await expect(ProductsPage.welcomeTxt).toHaveText('ALL PRODUCTS')
         await ProductsPage.searchProduct('men')
-        const products = await ProductsPage.addToCartBtn
-        const _not_needed = await ProductsPage.addingToCart(products.length)
+
+        const products = await basicFunctions.waitForMultipleElements(ProductsPage.addToCartBtn)
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaa', products)
+        const _not_needed = await ProductsPage.addingToCart(products)
         await HomePage.getCart()
 
-        await Cart.cartMenu.waitForDisplayed()
-        console.log('xxxxxxxxxxxxxxxxx', Cart.cartItems.length, products.length)
-        //if (Cart.cartItems.length != products.length){throw 'not all products are in cart'}
+        let cartLength = await basicFunctions.waitForMultipleElements(Cart.cartItems)
+        console.log('xxxxxxxxxxxxxxxxx', cartLength, products)
+        if (cartLength != products){throw 'not all products are in cart'}
         await Cart.checkoutBtn.click()
         await Cart.loginBtn.waitForDisplayed()
         await Cart.loginBtn.click()
         await basicFunctions.docLoaded()
         await LoginPage.login(UserData.PERMANENT_EMAIL, UserData.PASSWORD)
         await HomePage.getCart()
-        await Cart.cartMenu.waitForDisplayed()
-        //if (Cart.cartItems.length != products.length){throw 'not all products are in cart after logging in!'}
+        cartLength = await basicFunctions.waitForMultipleElements(Cart.cartItems)
+        if (cartLength != products){throw 'not all products are in cart after logging in!'}
   })
 })

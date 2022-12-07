@@ -9,3 +9,9 @@ export async function scrollPage (key) {
         i+=1
     }
 }
+export async function waitForMultipleElements (selector) {
+    return await browser.waitUntil( async () => {return await selector.length}, {timeout: 10000})
+}
+export async function waitForElementsExistance (selector) {
+    return await browser.waitUntil( async () => {return await selector.length}, {timeout: 10000})
+}
