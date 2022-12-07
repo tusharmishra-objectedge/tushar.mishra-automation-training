@@ -29,14 +29,14 @@ class RegisterPage extends Page {
         address1, address2, state, city, zipcode, mobile_number) {
             await basicFunctions.docLoaded()
             await this.signupTxt.waitForDisplayed()
-            await expect(this.signupTxt).toHaveText('ENTER ACCOUNT INFORMATION')
+            //await expect(this.signupTxt).toHaveText('ENTER ACCOUNT INFORMATION')
             await this.gender.click()
             await this.password.setValue(password)
             await this.days.selectByVisibleText(day)
             await this.months.selectByVisibleText(month)
             await this.years.selectByVisibleText(year)
-            await this.newsletter.click()
-            await this.optin.click()
+            //await this.newsletter.click()
+            //await this.optin.click()
             await this.first_name.setValue(first_name)
             await this.last_name.setValue(last_name)
             await this.company.setValue(company)
@@ -50,7 +50,6 @@ class RegisterPage extends Page {
             await basicFunctions.docLoaded()
             await this.successMsg.waitForDisplayed()
             await this.continueBtn.click()
-            await basicFunctions.docLoaded()
     }
 }
 

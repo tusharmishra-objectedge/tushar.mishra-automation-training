@@ -62,9 +62,10 @@ class HomePage extends Page {
         await this.delete.waitForClickable()
         await this.delete.click()
         await basicFunctions.docLoaded()
+        await this.deleteMsg.toBeDisplayed()
         await expect(this.deleteMsg).toHaveText('ACCOUNT DELETED!')
-        await this.continueBtn.click()
-        await basicFunctions.docLoaded()
+        //await this.continueBtn.click()
+        //await basicFunctions.docLoaded()
     }
     async logout () {
         await basicFunctions.docLoaded()

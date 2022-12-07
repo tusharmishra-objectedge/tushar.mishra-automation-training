@@ -103,14 +103,14 @@ export const config = {
     baseUrl: 'http://automationexercise.com',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 20000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 60000,
     //
     // Default request retries count
-    connectionRetryCount: 3,
+    connectionRetryCount: 1,
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
@@ -146,7 +146,7 @@ export const config = {
     // Options to be passed to Jasmine.
     jasmineOpts: {
         // Jasmine default timeout
-        defaultTimeoutInterval: 120000,
+        defaultTimeoutInterval: 69000,
         //
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
@@ -261,7 +261,7 @@ export const config = {
         return new Promise((resolve, reject) => {
             const generationTimeout = setTimeout(
                 () => reject(reportError),
-                5000)
+                10000)
 
             generation.on('exit', function(exitCode) {
                 clearTimeout(generationTimeout)

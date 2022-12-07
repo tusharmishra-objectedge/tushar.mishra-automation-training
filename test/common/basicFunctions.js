@@ -1,6 +1,13 @@
-export async function docLoaded () {
-    await browser.execute(() => document.readyState === 'complete')
-    await $('img[src="/static/images/home/logo.png"]').waitForDisplayed()
+export async function docLoaded () {    
+    // await browser.execute(() => document.readyState === 'complete')
+    // await $('img[src="/static/images/home/logo.png"]').waitForDisplayed()
+    await browser.waitUntil(
+        async () => await browser.execute(async () => document.readyState === 'complete'),
+        {
+          timeout: 10 * 1000, // 60 seconds
+          timeoutMsg: 'Message on failure'
+        }
+      );
 }
 export async function scrollPage (key) {
     let i=0

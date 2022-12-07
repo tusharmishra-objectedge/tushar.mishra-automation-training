@@ -25,7 +25,7 @@ describe('Verify address details in checkout page', () => {
       await expect(browser).toHaveUrlContaining('cart')
       await Cart.checkoutBtn.click()
       await basicFunctions.docLoaded()
-      await CheckoutPage.verify(numberOfItems, [UserData.COMPANY, UserData.CITY, UserData.STATE], UserData.MOBILE)
+      await CheckoutPage.verify(numberOfItems, [UserData.COMPANY, UserData.ADDRESS_1, UserData.ADDRESS_2], UserData.MOBILE)
       await HomePage.deleteAccount()
   })
 })

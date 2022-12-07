@@ -1,7 +1,6 @@
 // home.page.js
 import Page from './page'
 import * as basicFunctions from '../common/basicFunctions'
-import { SUPPORTED_BROWSER_RUNNER_PRESETS } from '@wdio/cli/build/constants'
 
 class CheckoutPage extends Page {
     get placeOrderBtn () { return $('a[href="/payment"]') }
@@ -25,21 +24,21 @@ class CheckoutPage extends Page {
         await browser.pause(2000)
 //        console.log('addressssssss', this.deliveryAddress, this.billingAddress, address)
         for (let i = 0; i < 3; i++) {
-          console.log('addresssss', this.deliveryAddress[i].getText(), this.billingAddress[i].getText())
+          console.log('addresssss', i, await this.deliveryAddress[i].getText(), await this.billingAddress[i].getText())
             if(await this.deliveryAddress[i].getText() != address[i]
             || await this.billingAddress[i].getText() != address[i]){
                 throw 'checkout address mismatch!'
             }
           }
-        if (await this.deliveryMob != mobileNo || await this.billingMob != mobileNo){
+        if (await this.deliveryMob.getText() != mobileNo || await this.billingMob.getText() != mobileNo){
             throw 'checkout mobile no. mismatch'
           }
         console.log('checkout verified')
     }
     async placeOrder (comment) {
         await basicFunctions.docLoaded()
-        this.commentSection.setValue(comment)
-        this.placeOrderBtn.click()
+        await this.commentSection.setValue(comment)
+        await this.placeOrderBtn.click()
         await basicFunctions.docLoaded()
     }
     async getInvoice () {
