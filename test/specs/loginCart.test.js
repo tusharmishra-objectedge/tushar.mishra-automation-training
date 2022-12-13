@@ -15,12 +15,10 @@ describe('Verify if cart is working fine after login', () => {
         await ProductsPage.searchProduct('men')
 
         const products = await basicFunctions.waitForMultipleElements(ProductsPage.addToCartBtn)
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaa', products)
         const _not_needed = await ProductsPage.addingToCart(products)
         await HomePage.getCart()
 
         let cartLength = await basicFunctions.waitForMultipleElements(Cart.cartItems)
-        console.log('xxxxxxxxxxxxxxxxx', cartLength, products)
         if (cartLength != products){throw 'not all products are in cart'}
         await Cart.checkoutBtn.click()
         await Cart.loginBtn.waitForDisplayed()
