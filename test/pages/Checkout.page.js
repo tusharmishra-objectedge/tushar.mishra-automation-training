@@ -21,10 +21,8 @@ class CheckoutPage extends Page {
             throw 'checkout item mismatch'
           }
         await this.deliveryMob.waitForDisplayed()
-        await browser.pause(2000)
-//        console.log('addressssssss', this.deliveryAddress, this.billingAddress, address)
+        //await browser.pause(2000)
         for (let i = 0; i < 3; i++) {
-          console.log('addresssss', i, await this.deliveryAddress[i].getText(), await this.billingAddress[i].getText())
             if(await this.deliveryAddress[i].getText() != address[i]
             || await this.billingAddress[i].getText() != address[i]){
                 throw 'checkout address mismatch!'
